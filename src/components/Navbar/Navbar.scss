@@ -1,0 +1,19 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    height: 80px;
+    padding: 0 7%;
+    box-shadow: 1px 2px 2px 1px #d3d3d3;
+    position: relative;
+
+    h1 {
+        display: flex;
+    align-items: center;
+    }
+
+    p {
+        display: flex;
+        align-items: center;
+    }
+}
