@@ -3,11 +3,10 @@ import "./CountryCard.scss";
 
 const CountryCard = (props) => {
   const displayCountries = (props) => {
-    const { menu, countries } = props;
+    const { countries } = props;
 
     if (countries.length > 0) {
       return countries.map((country, index) => {
-        const poulationNumber = country.population.toLocaleString("de-DE");
         return (
           <div className="country-card" key={index}>
             <div className="image">
@@ -19,7 +18,7 @@ const CountryCard = (props) => {
             <div className="content">
               <h2 className="country_name">{country.name.common}</h2>
               <p className="country_name">
-                <strong>Population:</strong> {poulationNumber}
+                <strong>Population:</strong> {country.population.toLocaleString("de-DE")}
               </p>
               <p className="country_name">
                 <strong>Region:</strong> {country.region}

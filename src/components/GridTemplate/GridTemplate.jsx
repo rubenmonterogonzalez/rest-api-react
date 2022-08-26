@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Filter from "../Filter/Filter";
 
 const GridTemplate = () => {
-  const [countries, getCountries] = useState("");
+  const [countries, getCountries] = useState([]);
   const url = "https://restcountries.com/v3.1/all";
 
   useEffect(() => {
@@ -22,10 +22,11 @@ const GridTemplate = () => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
+  
   return (
     <div className="gridTemplate">
       <div className="flex">
-        <SearchBar search={(str) => search(str)} />
+        <SearchBar setSearch={(str) => setSearch(str)} countries={countries}/>
         <Filter />
       </div>
       <CountryCard countries={countries} />
