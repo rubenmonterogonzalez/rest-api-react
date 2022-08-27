@@ -1,11 +1,13 @@
 import './App.scss'
-import Home from './pages/Home/Home'
+import Countries from './components/Countries/Countries'
+import Navbar from './components/Navbar/Navbar'
 
 function App() {
 
   return (
     <div className="App">
-      <Home />
+      <Navbar />
+      <Countries />
     </div>
   )
 }

@@ -39,7 +39,6 @@ const Filter = () => {
           </li>
         </ul>
       </div>
-      ;
     </div>
   );
 };

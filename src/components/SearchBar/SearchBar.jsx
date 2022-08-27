@@ -1,36 +1,42 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import "./SearchBar.scss";
 
-const SearchBar = ({ setSearch, countries }) => {
-  const [items, setItems] = useState([]);
+const SearchBar = ({
+  filter,
+  setFilter,
+  search,
+  setSearch,
+  countries,
+  setCountries,
+}) => {
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
 
+  const searchCountries = (searchValue) => {
+    setSearch(searchValue);
 
-  const filterIt = (terms, arr) => {
-    if ("" === terms || terms.length < 3) return arr;
-    const words = terms.match(/\w+|"[^"]+"/g);
-    words.push(terms);
-    return arr.filter((a) => {
-      const v = Object.values(a);
-      const f = JSON.stringify(v).toLowerCase();
-
-      return words.every(val => f.includes(val));
-    });
+    if (search) {
+      const filteredCountries = countries.filter((country) =>
+        Object.values(country)
+          .join("")
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
+      );
+      setFilter(filteredCountries);
+    } else {
+      setFilter(countries);
+    }
   };
-
-  const filterList = useCallback(({ target }) => {
-    const searchQuery = target.value.toLowerCase();
-    const updatedList = filterIt(searchQuery, countries.name.common);
-    setItems(updatedList);
-  }, []);
 
   return (
     <div className="searchBar">
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
-          onChange={filterList}
-          type="text"
-          name="Country Search"
+          type="search"
+          name="search"
           placeholder="Search for a country..."
+          onChange={(e) => searchCountries(e.target.value)}
         />
       </form>
     </div>
