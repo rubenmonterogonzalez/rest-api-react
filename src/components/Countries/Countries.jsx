@@ -12,10 +12,6 @@ const Countries = () => {
 
   const url = "https://restcountries.com/v3.1/all";
 
-  useEffect(() => {
-    getAllCountries();
-  }, []);
-
   const getAllCountries = async () => {
     await axios
       .get(url)
@@ -26,6 +22,10 @@ const Countries = () => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
+
+  useEffect(() => {
+    getAllCountries();
+  }, []);
 
   return (
     <section className="countries-grid">
@@ -38,7 +38,7 @@ const Countries = () => {
           filter={filter}
           setFilter={setFilter}
         />
-        <Filter filter={filter} setFilter={setFilter} />
+        <Filter countries={countries} setCountries={setCountries} />
       </div>
       {isLoading ? (
         <h2>Loading...</h2>
@@ -71,7 +71,7 @@ const Countries = () => {
           })}
         </div>
       ) : (
-        <div className="countries-grid">
+        <div className="country-grid">
           {countries.map((country, index) => {
             return (
               <div className="country-card" key={index}>
