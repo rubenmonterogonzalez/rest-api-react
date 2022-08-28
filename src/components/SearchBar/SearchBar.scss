@@ -6,19 +6,25 @@
         background: url(../../assets/search-icon.png);
         background-repeat: no-repeat;
         background-size: 20px;
-        background-position: 5%;
+        background-position: 20px;
         border: none;
         outline: none;
         box-shadow: 1px 2px 2px 1px #d3d3d3;
         height: 40px;
         margin: 0 0 50px;
-        width: 50%;
+        width: 550px;
         background-color: white;
         border-radius: 5px;
     }
 
-    input[type="text" i] {
-        padding: 1px 50px;
+    input[type="search" i] {
+        padding: 0px 15px 0 50px;
     }
 
+}
+
+@media all and (max-width: 630px) {
+    .searchBar input {
+        width: 100%;
+    }
 }

@@ -5,7 +5,6 @@
   font-weight: 400;
 
   color-scheme: light;
-  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,10 +13,45 @@
   -webkit-text-size-adjust: 100%;
 }
 
-html, body {
+html,
+body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   color: #242424;
   background-color: #f2f2f2de;
+}
+
+.dark-mode {
+  background-color: #242424;
+
+  .navbar {
+    background-color: #242424;
+    color: white;
+
+    button {
+      background-color: #242424;
+      color: white;
+    }
+  }
+
+  input {
+    background-color: #242424;
+  }
+
+  .select-region {
+    background-color: #242424;
+  }
+
+  .country-grid {
+    .content {
+      background-color: #242424;
+      color: white;
+    }
+  }
+}
+
+input,
+select {
+  cursor: pointer;
 }
