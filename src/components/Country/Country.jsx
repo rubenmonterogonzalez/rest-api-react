@@ -1,105 +1,72 @@
-
-import React, { useState, useEffect } from "react"
-import { Link, useParams } from "react-router-dom"
-import "./Country.scss"
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import "./Country.scss";
 
 const Country = () => {
-  const [country, setCountry] = useState([])
-  const { name } = useParams()
+  const [country, setCountry] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { name } = useParams();
+
+  const getCountry = async () => {
+    await fetch(`https://restcountries.com/v3.1/name/${name}`)
+      .then((response) => response.json())
+      .then((country) => {
+        setCountry(country);
+        setIsLoading(false);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  };
 
   useEffect(() => {
-    const fetchCountryData = async () => {
-      const response = await fetch(
-        `https://restcountries.eu/rest/v2/name/${name}`
-      )
-      const country = await response.json()
-      setCountry(country)
-    }
-
-    fetchCountryData()
-  }, [name])
+    getCountry();
+  }, [name]);
 
   return (
-    <>
-      <section className="country">
-        <Link to="/" className="btn btn-light">
-          <i className="fas fa-arrow-left"></i> Back Home
-        </Link>
-        {country.map((c) => {
-          const {
-            numericCode,
-            flag,
-            name,
-            nativeName,
-            population,
-            region,
-            subregion,
-            capital,
-            topLevelDomain,
-            currencies,
-            languages,
-            borders,
-          } = c
-
-          return (
-            <article key={numericCode}>
-              <div className="country-inner">
-                <div className="flag">
-                  <img src={flag} alt={name} />
+    <section className="country-page">
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <div className="">
+          <Link className="back-page" to={"/"}>
+            &larr; Back
+          </Link>
+          {country.map((country, index) => {
+            return (
+              <div className="country-card" key={index}>
+                <div className="image">
+                  <img
+                    src={country.flags.png}
+                    alt={country.name.common + " " + "flag"}
+                  />
                 </div>
-
-                <div className="country-details">
-                  <div>
-                    <h2>{name}</h2>
-                    <h5>
-                      Native Name: <span>{nativeName}</span>
-                    </h5>
-                    <h5>
-                      Population: <span>{population.toLocaleString()}</span>
-                    </h5>
-                    <h5>
-                      Region: <span>{region}</span>
-                    </h5>
-                    <h5>
-                      Sub Region: <span>{subregion}</span>
-                    </h5>
-                    <h5>
-                      Capital: <span>{capital}</span>{" "}
-                    </h5>
-                  </div>
-
-                  <div>
-                    <h5>
-                      Top Level Domain: <span>{topLevelDomain}</span>
-                    </h5>
-                    <h5>
-                      Currencies: <span>{currencies[0].name}</span>
-                    </h5>
-                    <h5>
-                      Languages: <span>{languages[0].name}</span>
-                    </h5>
+                <div className="content">
+                  <h2 className="country-name">{country.name.common}</h2>
+                  <div className="content-grid">
+                    <p className="country-native">
+                      <strong>Native Name:</strong> {}
+                    </p>
+                    <p className="country-population">
+                      <strong>Population:</strong>{" "}
+                      {country.population.toLocaleString("de-DE")}
+                    </p>
+                    <p className="country-region">
+                      <strong>Region:</strong> {country.region}
+                    </p>
+                    <p className="country-sub-region">
+                      <strong>Sub Region:</strong> {country.subregion}
+                    </p>
+                    <p className="country-capital">
+                      <strong>Capital:</strong> {country.capital}
+                    </p>
                   </div>
                 </div>
               </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+};
 
-              <div>
-                <h3>Border Countries: </h3>
-                <div className="borders">
-                  {borders.map((border) => {
-                    return (
-                      <ul key={border}>
-                        <li>{border}</li>
-                      </ul>
-                    )
-                  })}
-                </div>
-              </div>
-            </article>
-          )
-        })}
-      </section>
-    </>
-  )
-}
-
-export default Country
+export default Country;

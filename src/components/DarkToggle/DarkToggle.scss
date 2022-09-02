@@ -1,0 +1,23 @@
+.toggle-mode {
+  display: flex;
+
+  button {
+    border: none;
+    background: white;
+    cursor: pointer;
+
+    svg {
+      margin: -2px 10px;
+    }
+
+    span {
+      font-size: 16px;
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .toggle-mode span {
+    display: none;
+  }
+}

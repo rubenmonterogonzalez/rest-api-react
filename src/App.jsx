@@ -1,31 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Countries from "./components/Countries/Countries";
 import Navbar from "./components/Navbar/Navbar";
+import Country from "./components/Country/Country"
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [isActive, setActive] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    setActive(!isActive);
-  };
-
-  const styleElement = {
-    backgroundColor: darkMode ? "#242424" : "white",
-    color: darkMode ? "white" : "#242424",
-  };
-
   return (
-    <div className={isActive ? "dark-mode" : null}>
-      <Navbar
-        toggleDarkMode={toggleDarkMode}
-        darkMode={darkMode}
-        style={styleElement}
-      />
-      <Countries />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Countries />}></Route>
+        <Route path="/:name" element={<Country />} />
+      </Routes>
+    </Router>
   );
 }
 

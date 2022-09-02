@@ -7,41 +7,18 @@
   box-shadow: 1px 2px 2px 1px #d3d3d3;
   position: relative;
 
-  h1 {
+  a {
     display: flex;
     align-items: center;
-  }
-
-  p {
-    display: flex;
-    align-items: center;
-  }
-
-  .toggle-mode {
-    display: flex;
-
-    button {
-      border: none;
-      background: white;
-      cursor: pointer;
-
-      svg {
-        margin: -2px 10px;
-      }
-
-      span {
-        font-size: 16px;
-      }
-    }
-  }
+    text-decoration: none;
+    color: #242424;
+    font-size: 30px;
+    font-weight: 600;
+  }  
 }
 
 @media all and (max-width: 500px) {
-  .toggle-mode p {
-    display: none;
-  }
-
-  .navbar h1 {
+  .navbar a {
     font-size: 26px;
   }
 }

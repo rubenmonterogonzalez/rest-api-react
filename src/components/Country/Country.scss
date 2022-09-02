@@ -1,0 +1,39 @@
+.country-page {
+    padding: 7%;
+
+  .back-page {
+    display: inline-flex;
+    margin: 0;
+    width: fit-content;
+    min-height: 30px;
+    min-width: 100px;
+    padding: 1rem 1.75rem;
+    font: 700 17px/0.9rem;
+    border-radius: 5px;
+    color: #262626;
+    cursor: pointer;
+    border: 1px solid #242424;
+    word-spacing: 0.1rem;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .country-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 120px 0 0;
+
+    img {
+        width: 85%;
+    }
+
+    .content {
+        .country-name {
+            font-size: 50px;
+        }
+    }
+  }
+
+
+}
