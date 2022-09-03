@@ -2,6 +2,21 @@
   padding: 50px 7%;
 }
 
+.filter-region {
+  .select-region {
+    border: none;
+    outline: none;
+    box-shadow: 1px 2px 2px 1px #d3d3d3;
+    height: 40px;
+    margin: 0 0 50px;
+    width: 135px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0 10px;
+    color: #757575;
+  }
+}
+
 .flex {
   display: flex;
   justify-content: space-between;

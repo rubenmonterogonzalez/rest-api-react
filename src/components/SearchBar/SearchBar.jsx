@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SearchBar.scss";
 
 const SearchBar = ({
-  filter,
   setFilter,
   search,
   setSearch,
   countries,
-  setCountries,
 }) => {
   function handleSubmit(e) {
     e.preventDefault();
