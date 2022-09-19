@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Countries.scss";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
-import { BiLoaderCircle } from "react-icons/bi";
+import FilterRegion from "../FilterRegion/FilterRegion";
+import Loader from "../Loader/Loader";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
@@ -54,29 +55,10 @@ const Countries = () => {
           filter={filter}
           setFilter={setFilter}
         />
-        <div className="filter-region">
-          <select
-            onChange={(e) => {
-              setFiltered(e.target.value);
-            }}
-            className="select-region"
-            aria-label="Filter Countries By Region"
-          >
-            <option value="All">Filter By Region</option>
-            <option value="Africa">Africa</option>
-            <option value="Americas">America</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Oceania">Oceania</option>
-          </select>
-          <span className="focus"></span>
-        </div>
+        <FilterRegion setFiltered={setFiltered} />
       </div>
       {isLoading ? (
-        <h2 className="loader-text">
-          <BiLoaderCircle />
-          Loading...
-        </h2>
+        <Loader />
       ) : search.length > 0 ? (
         <div className="country-grid">
           {filter.map((country, index) => {
